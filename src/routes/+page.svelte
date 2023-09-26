@@ -2,7 +2,7 @@
   import App from '$lib/components/App.svelte'
 	import Countdown from '../lib/components/Countdown.svelte';
 
-  let maintanence = false;
+  let maintanence = true;
 </script>
 
 {#if maintanence === false}  
