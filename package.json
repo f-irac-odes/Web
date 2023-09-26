@@ -1,0 +1,41 @@
+{
+	"name": "web",
+	"version": "0.0.1",
+	"private": true,
+	"scripts": {
+		"dev": "vite dev",
+		"build": "vite build",
+		"preview": "vite preview",
+		"test": "playwright test",
+		"lint": "prettier --plugin-search-dir . --check . && eslint .",
+		"format": "prettier --plugin-search-dir . --write .",
+		"model-pipeline:run": "node scripts/model-pipeline.js"
+	},
+	"devDependencies": {
+		"@dimforge/rapier3d-compat": "^0.11.2",
+		"@playwright/test": "^1.28.1",
+		"@sveltejs/adapter-auto": "^2.0.0",
+		"@sveltejs/adapter-netlify": "^2.0.8",
+		"@sveltejs/kit": "^1.20.4",
+		"@theatre/core": "^0.6.1",
+		"@theatre/studio": "^0.6.1",
+		"@threlte/core": "latest",
+		"@threlte/extras": "latest",
+		"@threlte/rapier": "latest",
+		"@threlte/theatre": "latest",
+		"autoprefixer": "^10.4.14",
+		"daisyui": "^3.8.0",
+		"eslint": "^8.28.0",
+		"eslint-config-prettier": "^8.5.0",
+		"eslint-plugin-svelte": "^2.30.0",
+		"postcss": "^8.4.24",
+		"postcss-load-config": "^4.0.1",
+		"prettier": "^2.8.0",
+		"prettier-plugin-svelte": "^2.10.1",
+		"svelte": "^4.0.5",
+		"tailwindcss": "^3.3.2",
+		"three": "^0.153.0",
+		"vite": "^4.4.2"
+	},
+	"type": "module"
+}
