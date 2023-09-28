@@ -1,5 +1,5 @@
 <script>
-  import Countdown from '../lib/components/Countdown.svelte';
+  import Countdown from './Countdown.svelte';
 </script>
 
 <div class="flex flex-col">
