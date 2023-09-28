@@ -10,7 +10,9 @@
   <App />
 </div>
 {:else}
+<div class="flex flex-col text-center justify-center">
   <Maintenence/>
+</div>
 {/if}
 
 <style>
