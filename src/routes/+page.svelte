@@ -2,10 +2,10 @@
   import App from '$lib/components/App.svelte'
 	import Maintenence from '$lib/components/Maintenence.svelte';
 
-  let maintanence = true;
+  let maintanence = false;
 </script>
 
-{#if maintanence === false}  
+{#if maintanence === false }  
 <div>
   <App />
 </div>
@@ -21,8 +21,8 @@
     margin: 0;
   }
 
-  div {
+  /* div {
     width: 100vw;
     height: 100vh;
-  }
+  } */
 </style>

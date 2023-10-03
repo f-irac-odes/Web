@@ -1,11 +1,12 @@
 <script>
   import { Canvas } from '@threlte/core'
   import { World } from '@threlte/rapier'
-  import Scene from './Scene.svelte'
+  import Scene from './_Principal/Scene.svelte'
 </script>
 
-<Canvas>
+<!-- <Canvas>
   <World>
-    <Scene />
   </World>
-</Canvas>
+</Canvas> -->
+
+<Scene />

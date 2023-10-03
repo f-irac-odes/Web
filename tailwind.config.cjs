@@ -10,11 +10,11 @@ const config = {
 		themes: [
 		  {
 			theme: {
-			  "primary": "#a8683e",
-			  "secondary": "#10250e",
-			  "accent": "#458bba",
-			  "neutral": "#341538",
-			  "base-100": "#1c0b1e",
+				"primary": "#640072",
+				"secondary": "#020024",
+				"accent": "#05dcf9",
+				"neutral": "#180745",
+				"base-100": "#140639",
 			}
 		  }
 		]
