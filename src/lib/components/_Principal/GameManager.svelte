@@ -1,6 +1,5 @@
 <script>
 	import { onMount } from "svelte";
-	import pageNumber from "../../routes/PageCount";
 
     export let states = {
         currentState : 'start', 
@@ -11,10 +10,21 @@
             console.log('game just started')
         } else if(states.currentState == 'end'){
             console.log('end game')
-            pageNumber = 1;
+        }
+    }
+
+    function check(object, min, max) {
+        while (object < min || object > max){
+            
         }
     }
 
     onMount(() => checkStates());
 </script>
+
+{#if states.currentState === 'start'}
+     <slot name="start"><!-- optional fallback --></slot>
+{:else if states.currentState === 'end'}
+     <slot name="end"><!-- optional fallback --></slot>
+{/if}
 
