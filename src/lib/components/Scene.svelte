@@ -1,52 +1,38 @@
 <script>
-   import { T, useThrelte } from '@threlte/core';
-   import GameManager from './_Principal/GameManager.svelte'
-  // import { Sky } from '@threlte/extras'
-	// import Ground from './Ground.svelte';
-	// import CharacterController from './ChracterController.svelte';
-  // import * as THREE from 'three';
-  // import CanvasPage from "./CanvasPage.svelte";
-  import PartCanvasPage from "./_Pages/PartCanvasPage.svelte";
-	import Page from './_Pages/Page.svelte';
-
-  // let {scene} = useThrelte();
-  // scene.fog = new THREE.Fog('purple');
-
-  var player = {
-    life : 10,
-  }
-
-  const die = () => {
-    player.life--;
-
-    setTimeout(die, 1000)
-  }
-
-  die();
+  import {T, useThrelte} from '@threlte/core'
+  import CanvasPage from './_Pages/CanvasPage.svelte'
+  import Button from './_Widgets/Button.svelte'
+  import Ground from './_Principal/Ground.svelte'
+	import { ContactShadows, OrbitControls } from '@threlte/extras';
+  import * as THREE from 'three'
 
 </script>
- 
 
-<!-- <CanvasPage bg_color="red">
-  <T.Mesh slot="3d">
-    <T.BoxGeometry/>
-    <T.MeshBasicMaterial/>
-  </T.Mesh>
+<CanvasPage bg_color="#8806ce">
+  <div slot="3d">
+    <T.PerspectiveCamera makeDefault position.z={7} position.y={2}>
+      <OrbitControls/>
+    </T.PerspectiveCamera>
+
+    <T.Mesh position.y={0.6} receiveShadow>
+      <T.MeshStandardMaterial color="red"/>
+      <T.BoxGeometry/>
+    </T.Mesh>
+
+    <Ground/>
+    <T.AmbientLight intensity={1.4}/>
+    <T.DirectionalLight position.z={4} castShadow/>
+    <ContactShadows
+      scale={10}
+      blur={2}
+      far={2.5}
+      opacity={0.5}
+    />
+  </div>
+
   <div slot="html">
-    <button>
-      Hello bro
-    </button>
+    <nav class="flex flex-row justify-start ">
+      <Button>Hello</Button>
+    </nav>
   </div>
-</CanvasPage> -->
-
-
-<GameManager>
-  <Page title="Lobby" description_needed={false} description="bye guys" slot="start">
-    <button>Hello</button>
-  </Page>
-  <div slot="end">
-    {#if player.life == 0}
-      <PartCanvasPage/>
-    {/if}
-  </div>
-</GameManager>
+</CanvasPage>

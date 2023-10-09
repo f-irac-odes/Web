@@ -14,8 +14,8 @@
     }
 
     function check(object, min, max) {
-        while (object < min || object > max){
-            
+        while (object > min || object < max){
+            states.currentState = 'start'
         }
     }
 

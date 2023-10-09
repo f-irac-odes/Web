@@ -3,9 +3,8 @@
     import { AutoColliders } from '@threlte/rapier'
 </script>
 
-<AutoColliders shape={'cuboid'}>
-    <T.Mesh>
-        <T.MeshStandardMaterial/>
-        <T.BoxGeometry args={[100, 0, 100]}/>
-    </T.Mesh>
-</AutoColliders>
+
+<T.Mesh position.y={-1} receiveShadow>
+    <T.MeshStandardMaterial color="#330066"/>
+    <T.BoxGeometry args={[100, 0, 100]}/>
+</T.Mesh>
