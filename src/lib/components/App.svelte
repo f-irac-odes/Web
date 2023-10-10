@@ -4,9 +4,8 @@
   import Scene from './Scene.svelte'
 </script>
 
-<!-- <Canvas>
+<Canvas>
   <World>
+    <Scene />
   </World>
-</Canvas> -->
-
-<Scene />
+</Canvas>
