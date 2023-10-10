@@ -1,2 +1,12 @@
-<h1>Welcome to SvelteKit</h1>
-<p>Visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to read the documentation</p>
+<script>
+	import { Canvas } from "@threlte/core";
+	import Scene from "../lib/Scene.svelte";
+
+</script>
+<!-- YOU CAN DELETE EVERYTHING IN THIS PAGE -->
+
+<div class="container h-full mx-auto flex justify-center items-center">
+	<Canvas>
+		<Scene/>
+	</Canvas>
+</div>
