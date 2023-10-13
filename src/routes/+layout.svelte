@@ -1,6 +1,6 @@
 <script>
 	import '../app.postcss';
-	import { AppShell, AppBar } from '@skeletonlabs/skeleton';
+	import { AppShell, AppBar, Avatar } from '@skeletonlabs/skeleton';
 
 	// Floating UI for Popups
 	import { computePosition, autoUpdate, flip, shift, offset, arrow } from '@floating-ui/dom';
@@ -36,11 +36,12 @@ gemsCoins.subscribe((value) => {
 <div class="fixed w-full">
 		<AppBar background="bg-trasparent">
 			<svelte:fragment slot="lead">
+				<Avatar src="src/lib/warlock-eye.svg" rounded="rounded-none"/>
 				<p class="p-5 variant-soft-primary">{name}</p>
 			</svelte:fragment>
 			<svelte:fragment slot="trail">
 				<p class="btn variant-soft-warning"  use:popup={popupFeatured}>🌌 {coins}</p>
-				<div class="card p-4 w-32 shadow-xl" data-popup="popupFeatured">
+				<div class="card  p-2 text-center w-24 shadow-xl" data-popup="popupFeatured">
 					<div><p>your coins</p></div>
 					<div class="arrow bg-surface-100-800-token" />
 				</div>

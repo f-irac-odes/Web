@@ -1,6 +1,12 @@
 <script>
+  import { goto } from '$app/navigation';
+	import { ProgressRadial } from '@skeletonlabs/skeleton';
+
+  const go = () => {
+    goto("/_character");
+  }
     import { T, useFrame } from '@threlte/core'
-    import { Grid, Sky, interactivity } from '@threlte/extras'
+    import { Grid, Sky, Suspense, interactivity } from '@threlte/extras'
     import { spring } from 'svelte/motion'
   
     interactivity()
@@ -25,7 +31,8 @@
     rotation.y={rotation}
     position.y={1}
     scale={$scale}
-    on:click={()  => push("/_character")}
+    
+    on:click={go}
     castShadow
   >
     <T.BoxGeometry args={[1, 2, 1]} />
@@ -37,3 +44,6 @@
     <T.MeshStandardMaterial color="white" />
   </T.Mesh>
   
+  <Suspense final>
+    <ProgressRadial value={undefined} />
+  </Suspense>
