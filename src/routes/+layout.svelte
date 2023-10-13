@@ -5,7 +5,17 @@
 	// Floating UI for Popups
 	import { computePosition, autoUpdate, flip, shift, offset, arrow } from '@floating-ui/dom';
 	import { storePopup } from '@skeletonlabs/skeleton';
+	import { popup } from '@skeletonlabs/skeleton';
 	storePopup.set({ computePosition, autoUpdate, flip, shift, offset, arrow });
+
+	const popupFeatured = {
+	// Represents the type of event that opens/closed the popup
+	event: 'click',
+	// Matches the data-popup value on your popup element
+	target: 'popupFeatured',
+	// Defines which side of your trigger the popup will appear
+	placement: 'bottom',
+	}
 
 	import {playerCoins, playerName, gemsCoins} from '../lib/stores'
 
@@ -23,27 +33,32 @@ gemsCoins.subscribe((value) => {
 })
 </script>
 
-<!-- App Shell -->
-<AppShell>
-	<svelte:fragment slot="header">
-		<AppBar>
+<div class="fixed w-full">
+		<AppBar background="bg-trasparent">
 			<svelte:fragment slot="lead">
 				<p class="p-5 variant-soft-primary">{name}</p>
 			</svelte:fragment>
 			<svelte:fragment slot="trail">
-				<p class="btn variant-soft-warning">Coin number: {coins}</p>
-				<p class="btn variant-soft-warning">Gems number: {gems}</p>
+				<p class="btn variant-soft-warning"  use:popup={popupFeatured}>🌌 {coins}</p>
+				<div class="card p-4 w-32 shadow-xl" data-popup="popupFeatured">
+					<div><p>your coins</p></div>
+					<div class="arrow bg-surface-100-800-token" />
+				</div>
+				<p class="btn variant-soft-warning">💎 {gems}</p>
 			</svelte:fragment>
 		</AppBar>
-	</svelte:fragment>
+</div>
 	<!-- Page Route Content -->
-	<slot/>
-	<svelte:fragment slot="footer">
-		<AppBar>
-			<svelte:fragment slot="lead">
-				<div class="flex flex-row space-x-6">
-					<a class="btn variant-soft-primary " href="/_game">
-						shop
+
+		<slot/>
+
+		<div class="fixed w-full bottom-0">
+
+			<AppBar background="bg-trasparent">
+				<svelte:fragment slot="lead">
+					<div class="flex flex-row space-x-6">
+						<a class="btn variant-soft-primary " href="/_game">
+							shop
 					</a>
 					<a class="btn variant-soft-primary " href="/_game">
 						metas
@@ -56,5 +71,4 @@ gemsCoins.subscribe((value) => {
 				</a>	
 			</svelte:fragment>
 		</AppBar>
-	</svelte:fragment>
-</AppShell>
+	</div>

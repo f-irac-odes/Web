@@ -1,14 +1,12 @@
 <script>
     import { T, useFrame } from '@threlte/core'
-    import { interactivity } from '@threlte/extras'
+    import { Grid, Sky, interactivity } from '@threlte/extras'
     import { spring } from 'svelte/motion'
   
     interactivity()
     const scale = spring(1)
     let rotation = 0
-    useFrame((state, delta) => {
-      rotation += delta
-    })
+
   </script>
   
   <T.PerspectiveCamera
@@ -20,13 +18,14 @@
   />
   
   <T.DirectionalLight position={[0, 10, 10]} castShadow />
+  <Sky elevation={-10}/>
+  <Grid sectionColor="white" cellColor="white"/>
   
   <T.Mesh
     rotation.y={rotation}
     position.y={1}
     scale={$scale}
-    on:pointerenter={() => scale.set(1.5)}
-    on:pointerleave={() => scale.set(1)}
+    on:click={()  => push("/_character")}
     castShadow
   >
     <T.BoxGeometry args={[1, 2, 1]} />
