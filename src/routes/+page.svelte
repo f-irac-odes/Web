@@ -1,14 +1,15 @@
-<script>
-	import { Canvas } from "@threlte/core";
-	import Scene from "../lib/Scene.svelte";
-	import { AppBar, Avatar } from "@skeletonlabs/skeleton";
-</script>
+<!-- YOU CAN DELETE EVERYTHING IN THIS PAGE -->
 
-<div class="h-full w-full">
-	<Canvas>
-		<Scene/>
-	</Canvas>
+<div class="container h-full mx-auto flex justify-center items-center">
+	<div class="space-y-5">
+		<h1 class="h1">Let's get cracking bones!</h1>
+		<p>Start by exploring:</p>
+		<ul>
+			<li><code class="code">/src/routes/+layout.svelte</code> - barebones layout</li>
+			<li><code class="code">/src/app.postcss</code> - app wide css</li>
+			<li>
+				<code class="code">/src/routes/+page.svelte</code> - this page, you can replace the contents
+			</li>
+		</ul>
+	</div>
 </div>
-
-<style>
-</style>
