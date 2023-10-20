@@ -1,5 +1,6 @@
 <script>
   import App from '$lib/components/App.svelte'
+  import { AppBar } from '@skeletonlabs/skeleton';
 </script>
 
 <div>

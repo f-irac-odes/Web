@@ -1,9 +1,18 @@
 <script>
   import { T, useThrelte } from '@threlte/core'
-  import { ContactShadows, Float, Grid, OrbitControls, Sky } from '@threlte/extras'
+  import { Align, ContactShadows, Float, Grid, HTML, OrbitControls, Sky, TransformControls, interactivity } from '@threlte/extras'
   import {characterChosed} from './stores'
 	import Teleporter from './Teleporter.svelte';
+	import Building from './Building.svelte';
 	import { FogExp2 } from 'three';
+
+  interactivity();
+
+  let characterLink;
+
+  const clickOnBehalf = (object) => {
+    object.click()
+  }
 
   let {scene} = useThrelte();
   scene.fog = new FogExp2('#ddd', 0.015);
@@ -19,7 +28,7 @@
 
 <T.PerspectiveCamera
   makeDefault
-  position={[0, 10, 15]}
+  position={[0, 5, 15]}
   fov={15}
 >
   <OrbitControls
@@ -47,11 +56,30 @@
   opacity={0.5}
 />
 
-<T.Mesh position.y={0.85} castShadow>
+<TransformControls>
+  <Align z={false} y={false}>
+    <Building scale={2} position.z={-6} position.x={-2}/>
+    <Building scale={2} position.z={-6} position.x={0}/>
+    <Building scale={2} position.z={-6} position.x={2}/>
+  </Align>
+</TransformControls>
+
+<div class="fixed">
+  <a href="/play">
+    Play
+  </a>
+</div>
+
+
+
+<T.Mesh position.y={0.85} castShadow on:click(clickOnBehalf(characterLink))>
   <T.MeshStandardMaterial color={character.color}/>
+  <HTML>
+    <a id="characterLink" class="hidden" href="/characters">Character</a>
+  </HTML>
   <T.BoxGeometry/>
 </T.Mesh>
 
 <Teleporter/>
 
-<T.DirectionalLight intensity={0.8} castShadow position.y={10}/>
+<T.DirectionalLight intensity={1} castShadow position.y={100} position.z={6}/>

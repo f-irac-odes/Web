@@ -11,7 +11,7 @@ Command: npx @threlte/gltf@2.0.0 src/lib/components/models/Teleporter.glb --shad
   export const ref = new Group()
 
   const gltf = useGltf('/src/lib/components/models/Teleporter.glb')
-  const gold= new MeshStandardMaterial({color: '#d4af37', roughness: 0, matalness: 0.5});
+  const gold= new MeshStandardMaterial({color: '#d4af37', roughness: 0, metalness: 0.5});
 
   const component = forwardEventHandlers()
 </script>
@@ -21,7 +21,7 @@ Command: npx @threlte/gltf@2.0.0 src/lib/components/models/Teleporter.glb --shad
     <slot name="fallback" />
   {:then gltf}
     <T.Group scale={100}>
-      <T.Mesh geometry={new ConeGeometry(0.5, 1, 40, 20, true)} material={new MeshStandardMaterial({color: 'teal', trasparent:true, opacity: 0.4})}/>
+      <T.Mesh geometry={new ConeGeometry(0.5, 1, 40, 20, true)} material={new MeshStandardMaterial({color: 'teal',})}/>
       <T.Mesh geometry={gltf.nodes.Props_Base_1.geometry} material={gltf.materials.DarkGrey} />
       <T.Mesh geometry={gltf.nodes.Props_Base_2.geometry} material={gltf.materials.Main} />
       <T.Mesh geometry={gltf.nodes.Props_Base_3.geometry} material={gold} />
