@@ -1,5 +1,5 @@
 <script context="module">
-    export const characetrs = [
+    export const characters = [
         {
             Donnie : {
                 rarity: 'common',

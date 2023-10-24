@@ -9,3 +9,4 @@
 </script>
 
 <!-- App Shell -->
+<slot></slot>

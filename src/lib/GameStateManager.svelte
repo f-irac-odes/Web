@@ -3,6 +3,15 @@
     let gameEnded = false;
     export let motivationExp;
 
+    const check =() => {
+        while (gameStarted) {
+            
+        }
+        if (gameEnded) {
+            gameStarted = false;
+        }
+    }
+
     const change = (motivation) => {
 
         motivation = motivationExp;
@@ -12,12 +21,5 @@
 
     }
 
-    const check =() => {
-        while (gameStarted) {
-            console.log("hello")
-        }
-        if (gameEnded) {
-            gameStarted = false;
-        }
-    }
+    check()
 </script>
