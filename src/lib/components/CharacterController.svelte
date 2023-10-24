@@ -1,4 +1,10 @@
-<script context="module">
+<script>
+	import { useFrame, T, useThrelte } from '@threlte/core';
+	import { HTML, OrbitControls } from '@threlte/extras';
+	import { AutoColliders } from '@threlte/rapier';
+    import {characters} from './Characters.svelte'
+	import { Mesh} from 'three';
+
     export const states = {
         dead : false,
         running : false,
@@ -7,18 +13,10 @@
         dancing : false,
         attacking : false,
     }
-</script>
-
-<script>
-	import { useFrame, T } from '@threlte/core';
-	import { HTML, OrbitControls } from '@threlte/extras';
-    import {characters} from './Characters.svelte'
-	import { Mesh} from 'three';
-	import { Group } from 'three';
-
 
     let mesh = new Mesh();
     let keyboard = {};
+    let {camera} = useThrelte();
 
     function player_movement() {
         if(keyboard[37]){ //left arrow key
@@ -61,13 +59,15 @@
     <OrbitControls/>
 </T.PerspectiveCamera>
 
-<T.Mesh bind:ref={mesh}>
-    <HTML position.y={1.25}>
-        <p>hi</p>
-    </HTML>
-    <T.MeshStandardMaterial color="red"/>
-    <T.BoxGeometry/>
-</T.Mesh>
+<AutoColliders>
+    <T.Mesh bind:ref={mesh}>
+        <HTML position.y={1.25}>
+            <p>hi</p>
+        </HTML>
+        <T.MeshStandardMaterial color="red"/>
+        <T.BoxGeometry/>
+    </T.Mesh>
+</AutoColliders>
 
 
 <svelte:window on:keydown|preventDefault={keyDown} on:keydown|preventDefault={keyUp}/>

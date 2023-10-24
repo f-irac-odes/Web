@@ -39,13 +39,11 @@
     ]
 </script>
 
-{#each map as layer, i}
-    {#each map as block, z}
-        {#each  block as item, x}            
-        <T.Mesh position.x={x} position.z={z}>
-            <T.MeshStandardMaterial/>
-            <T.BoxGeometry args={map[i].widht}/>
-         </T.Mesh>
-        {/each}
+{#each map as block, z}
+    {#each  block as item, x}            
+    <T.Mesh position.x={x} position.z={z}>
+        <T.MeshStandardMaterial/>
+        <T.BoxGeometry args={map[z].widht}/>
+    </T.Mesh>
     {/each}
 {/each}
