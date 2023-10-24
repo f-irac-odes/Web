@@ -3,7 +3,7 @@
         dead : false,
         running : false,
         walking : false,
-        idling : true,
+        idling : false,
         dancing : false,
         attacking : false,
     }

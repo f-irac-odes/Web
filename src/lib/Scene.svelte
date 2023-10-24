@@ -4,6 +4,7 @@
 	import CharacterController, {states} from "./components/CharacterController.svelte";
 	import { BoxGeometry, DirectionalLight } from "three";
 	import { Sky } from "@threlte/extras";
+	import Map from "./components/Map.svelte";
 
     let motivation;
 
@@ -13,18 +14,14 @@
 </script>
 
 
+
+<Sky elevation={-10}/>
+<CharacterController/>
+<GameStateManager motivationExp={motivation}/>
+<Map/>
+<T.DirectionalLight castShadow/>
 {#if states.dead === true}
      <div class="w-full h-full fixed variant-glass-surface">
         <p>You loose</p>
      </div>
 {/if}
-
-<Sky elevation={-10}/>
-<CharacterController/>
-<GameStateManager motivationExp={motivation}/>
-<T.Mesh position.y={-1} receiveShadow>
-    <T.MeshStandardMaterial/>
-    <T.BoxGeometry args={[100, 1, 100]}/>
-</T.Mesh>
-
-<T.DirectionalLight castShadow/>
