@@ -1,9 +1,7 @@
 <script>
-	import Lobby from "../../lib/Lobby.svelte";
-
-
+	import App from '../lib/App.svelte'
 </script>
 
 <div class="w-[100vw] h-[100vh]">
-    <Lobby/>
+	<App/>
 </div>
