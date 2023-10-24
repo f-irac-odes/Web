@@ -12,5 +12,5 @@
 </Canvas>
 
 <FullPage>
-	<slot name="leadTop"><p>hello</p></slot>
+	<a slot="leadTop" href="/_game">hello</a>
 </FullPage>

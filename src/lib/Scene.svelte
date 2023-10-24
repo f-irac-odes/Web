@@ -1,16 +1,13 @@
 <script>
     import { T } from "@threlte/core";
 	import GameStateManager from "./GameStateManager.svelte";
-	import CharacterController, {states} from "./components/CharacterController.svelte";
+	import CharacterController from "./components/CharacterController.svelte";
 	import { BoxGeometry, DirectionalLight } from "three";
 	import { Sky } from "@threlte/extras";
 	import Map from "./components/Map.svelte";
 
     let motivation;
 
-    if (states.dead == true) {
-        motivation = "you dead"
-    }    
 </script>
 
 
@@ -20,8 +17,3 @@
 <GameStateManager motivationExp={motivation}/>
 <Map/>
 <T.DirectionalLight castShadow/>
-{#if states.dead === true}
-     <div class="w-full h-full fixed variant-glass-surface">
-        <p>You loose</p>
-     </div>
-{/if}

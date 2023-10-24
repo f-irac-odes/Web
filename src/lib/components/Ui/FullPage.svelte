@@ -2,7 +2,7 @@
     import {AppBar} from '@skeletonlabs/skeleton'
 </script>
 
-<div class="fixed top-0">
+<div class="fixed top-0 w-full">
     <AppBar background="bg-transparent">
         <svelte:fragment slot="lead">
             <slot name="leadTop">
@@ -16,7 +16,7 @@
     </AppBar>
 </div>
 
-<div class="fixed bottom-0">
+<div class="fixed bottom-0 w-full">
     <AppBar background="variant-glass-surface">
         <svelte:fragment slot="lead">
             <slot name="leadBottom"></slot>

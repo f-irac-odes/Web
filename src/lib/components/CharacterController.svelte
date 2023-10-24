@@ -5,7 +5,7 @@
     import {characters} from './Characters.svelte'
 	import { Mesh} from 'three';
 
-    export const states = {
+    const states = {
         dead : false,
         running : false,
         walking : false,
@@ -21,6 +21,7 @@
     function player_movement() {
         if(keyboard[37]){ //left arrow key
             mesh.rotation.z += Math.PI * 0.01;
+            
         }
 
         if(keyboard[39]){ //right arrow key
