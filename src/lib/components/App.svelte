@@ -1,11 +1,15 @@
 <script>
   import { Canvas } from '@threlte/core'
+  import {World, Debug} from '@threlte/rapier'
   import Lobby from './Lobby.svelte'
   import Game from './Game.svelte';
 </script>
 
 <Canvas>
-  <Game />
+  <World>
+    <Debug/>
+    <Game />
+  </World>
 </Canvas>
 
 <div class="fixed bottom-4 left-[50%]">
