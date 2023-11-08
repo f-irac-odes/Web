@@ -1,19 +1,18 @@
 <script>
     import { T, useFrame } from "@threlte/core";
 	import { Collider, RigidBody } from "@threlte/rapier";
-	import { CapsuleGeometry, MeshStandardMaterial, Vector3 } from "three";
-    import Emitter from './particles/Emitter.svelte'
+    import { Vector3, Group } from "three";
 
-    let position = [0, 1, 0];
-
+    // variables
     let rigidBody;
-    let character;
-
+    let character = new Group;
+    let position = [0, 1, 0];
+    let rotation = [character.rotation.x, character.rotation.y, character.rotation.z];
     let changeRotation;
     let camera;
     let controller;
 
-    let states = {
+    let states ={
         isWalking : false
     }
     let x = 0 , z = 18;
@@ -120,19 +119,15 @@
 
 </script>
 
-  <!-- Camera -->
+<svelte:window on:keydown={keyDown} on:keyup={keyUp}/>
+
 <T.PerspectiveCamera makeDefault position={[x, 18, z]} fov={35} bind:ref={camera}/>
 
-<T.Group {position} bind:ref={controller} >
-    <RigidBody enabledRotations={[false, false, false]} linearDamping={3} bind:rigidBody >
+<T.Group bind:ref={controller} {position}>
+    <RigidBody bind:rigidBody enabledRotations={[false, false, false]} linearVelocity={[1, 0, 1]} linearDamping={3}>
         <Collider args={[0.6, 0.4]} shape={'capsule'}/>
-        <T.Group bind:ref={character} position={[0, -0.75, 0]}>
+        <T.Group bind:ref={character} {rotation}>
             <slot/>
         </T.Group>
-        {#if states.isWalking}
-             <Emitter position={[position[0], position[1] - 0.50, position[2]]}/>
-        {/if}
     </RigidBody>
 </T.Group>
-
-<svelte:window on:keydown={keyDown} on:keyup={keyUp}/>
