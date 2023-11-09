@@ -1,18 +1,19 @@
 <script>
-    import { T, useFrame } from "@threlte/core";
-	import { Collider, RigidBody } from "@threlte/rapier";
-    import { Vector3, Group } from "three";
+	import { T, useFrame } from "@threlte/core";
+	import { Collider,  RigidBody } from "@threlte/rapier";
+	import { Vector3, Group } from "three";
+	import Emitter from "./Particles/Emitter.svelte";
 
     // variables
     let rigidBody;
     let character = new Group;
-    let position = [0, 1, 0];
-    let rotation = [character.rotation.x, character.rotation.y, character.rotation.z];
+    let position = [0, 0, 0];
+    let rotation = [0, 0, 0]
     let changeRotation;
     let camera;
     let controller;
 
-    let states ={
+    let states = {
         isWalking : false
     }
     let x = 0 , z = 18;
@@ -119,15 +120,22 @@
 
 </script>
 
-<svelte:window on:keydown={keyDown} on:keyup={keyUp}/>
-
+  <!-- Camera -->
 <T.PerspectiveCamera makeDefault position={[x, 18, z]} fov={35} bind:ref={camera}/>
 
-<T.Group bind:ref={controller} {position}>
-    <RigidBody bind:rigidBody enabledRotations={[false, false, false]} linearVelocity={[1, 0, 1]} linearDamping={3}>
-        <Collider args={[0.6, 0.4]} shape={'capsule'}/>
-        <T.Group bind:ref={character} {rotation}>
-            <slot/>
-        </T.Group>
-    </RigidBody>
+<!-- Character -->
+<T.Group {position} {rotation} bind:ref={controller}> 
+    <RigidBody bind:rigidBody enabledRotations={[false, false, false]} linearDamping={3}>
+        <Collider args={[0.6, 0.4]} shape={'capsule'} on:collisionenter={({targetCollider}) => {
+        }}/>
+            <T.Group position={[0, -0.75, 0]} bind:ref={character}>
+                <slot/>
+            </T.Group>
+            {#if states.isWalking}
+                 <Emitter position={[position[0], position[1], position[2]]}/>
+            {/if}
+        </RigidBody>
 </T.Group>
+
+<!-- Input -->
+<svelte:window on:keydown={keyDown} on:keyup={keyUp}/>

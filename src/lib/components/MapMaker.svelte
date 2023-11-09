@@ -1,0 +1,49 @@
+<script>
+    import {T} from '@threlte/core' 
+	import { AutoColliders } from '@threlte/rapier';
+	import { BoxGeometry, MeshStandardMaterial } from 'three';
+	import Door from './map/Door.svelte';
+	import { RoundedBoxGeometry } from '@threlte/extras';
+
+    let rotation = [0, 3.16, 0];
+
+    export let map = [
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 1, 1, 1, 1, 1, 3, 1, 1, 1, 1, 1, 1, 0],
+        [0, 1, 4, 0, 0, 0, 0, 0, 0, 0, 0, 4, 1, 0],
+        [0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0],
+        [0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0],
+        [0, 1, 0, 0, 0, 0, 1, 1, 1, 3, 1, 1, 1, 0],
+        [0, 1, 0, 5, 0, 0, 1, 6, 0, 0, 0, 0, 0, 0],
+        [0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0],
+        [0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 2, 0],
+        [0, 1, 3, 1, 1, 1, 1, 0, 0, 0, 0, 0, 1, 0],
+        [0, 0, 0, 4, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 0],
+        [0, 0, 1, 1, 3, 1, 1, 1, 3, 1, 0, 1, 0, 0],
+        [0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0],
+        [0, 0, 0, 1, 0, 0, 3, 0, 0, 0, 0, 1, 0, 0],
+        [0, 0, 0, 1, 4, 0, 1, 0, 0, 0, 0, 1, 0, 0],
+        [0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0],
+    ]
+</script>
+
+{#each map as line, z}
+     {#each line as block, x}
+         {#if block === 1}
+            <AutoColliders>
+                <T.Mesh position={[x, 0, z]} material={new MeshStandardMaterial({color : "#f0f0f0"})}>
+                    <RoundedBoxGeometry/>
+                </T.Mesh>
+            </AutoColliders>
+         {:else if  block === 2}
+             <!-- else if content here -->
+         {:else if block === 3}
+         {#if line[x - 1] === 1}
+                <Door position={[x, 0, z]} {rotation}/>
+            {:else if line[x - 1] !== 1}
+                <Door position={[x, 0, z]} rotation={[rotation[0], rotation[1] - 1.58, rotation[2]]}/>
+        {/if}
+         {/if}
+     {/each}
+{/each}
