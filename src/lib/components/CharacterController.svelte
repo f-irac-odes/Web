@@ -7,6 +7,7 @@
 
     // variables
     let rigidBody;
+    let life = 100
     let character = new Group;
     let position = [0, 1, 0];
     let rotation = [0, 0, 0]
@@ -137,7 +138,9 @@
             {/if}
             <!-- <Emitter position={[position[0], position[1] + 0.3, position[2]]}/> -->
             <HTML center position.y={2}>
-                <div class="bar-wrapper-in-game"></div>
+                <div class="bar-wrapper-in-game">
+                    <div class="bar" style="width: {life}%" />
+                </div>
             </HTML>
         </RigidBody>
 </T.Group>
