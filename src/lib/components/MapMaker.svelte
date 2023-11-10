@@ -6,6 +6,7 @@
 	import { RoundedBoxGeometry } from '@threlte/extras';
 	import CrateStrong from './models/crateStrong.svelte';
 	import Plant from './models/plant.svelte';
+	import Spikes from './models/spikes.svelte';
 	import BaerTrap from './models/BearTrap.svelte';
 
     let rotation = [0, 3.16, 0];
@@ -74,10 +75,11 @@
                 <Plant scale={1.3}/>
             </T.Group>
         {:else if block === 6}
-             <T.Group>
+             <T.Group position>
                 <Collider args={[1, 1, 1]} shape={'cuboid'} sensor on:sensorenter={({targetRigidBody}) => {
                     targetRigidBody.setLinearDamping(25);
                 }}/>
+                <Spikes/>
              </T.Group>
          {/if}
      {/each}
