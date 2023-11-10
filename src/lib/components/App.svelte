@@ -4,6 +4,8 @@
 	import { Debug, World } from '@threlte/rapier';
   import { tweened } from 'svelte/motion'
 	import { fade } from 'svelte/transition'
+  import Character from './models/chracter.svelte'
+  import CharacterController from './CharacterController.svelte';
 	import { Suspense, useProgress } from '@threlte/extras';
 
   const { progress } = useProgress()
@@ -31,7 +33,11 @@
   <Suspense final>
     <World>
     <Debug/>
-    <Scene />
+    <Scene>
+      <CharacterController>
+        <Character scale={0.5}/>
+      </CharacterController>
+    </Scene>
   </World>
   </Suspense>
 </Canvas>
@@ -65,13 +71,6 @@
 		border: 1px solid black;
 		position: relative;
 	}
-  /* .bar-wrapper-in-game {
-		width: 33px;
-		height: 10px;
-		border: 1px solid black;
-    border-radius: 6px;
-		position: relative;
-	} */
 	.bar {
 		height: 100%;
     border-radius: 6px;

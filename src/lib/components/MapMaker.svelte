@@ -65,6 +65,12 @@
                 <Collider args={[1, 1, 1]} shape={'cuboid'} sensor/>
                 <Plant/>
             </T.Group>
+        {:else if block === 6}
+             <T.Group>
+                <Collider args={[1, 1, 1]} shape={'cuboid'} sensor on:sensorenter={({targetRigidBody}) => {
+                    targetRigidBody.setLinearDamping(25);
+                }}/>
+             </T.Group>
          {/if}
      {/each}
 {/each}

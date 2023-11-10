@@ -11,7 +11,7 @@ Command: npx @threlte/gltf@2.0.0 src/lib/components/models/crateStrong.glb
 
 				
 	
-        import { Group } from 'three'
+        import { Group, MeshStandardMaterial } from 'three'
         import { T, forwardEventHandlers } from '@threlte/core'
         import { useGltf } from '@threlte/extras'
 	
@@ -36,7 +36,7 @@ Command: npx @threlte/gltf@2.0.0 src/lib/components/models/crateStrong.glb
 			{#await gltf}
 				<slot name="fallback" />
 			{:then gltf}
-				<T.Mesh geometry={gltf.nodes.Mesh_crateStrong.geometry} material={gltf.materials.metal} />
+				<T.Mesh geometry={gltf.nodes.Mesh_crateStrong.geometry} material={new MeshStandardMaterial({color: "gray", metalness : 0.8, roughness: 0.2})} />
 <T.Mesh geometry={gltf.nodes.Mesh_crateStrong_1.geometry} material={gltf.materials.woodDark} />
 <T.Mesh geometry={gltf.nodes.Mesh_crateStrong_2.geometry} material={gltf.materials.wood} />
 

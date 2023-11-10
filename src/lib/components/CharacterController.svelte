@@ -3,6 +3,7 @@
 	import { Collider,  RigidBody } from "@threlte/rapier";
 	import { Vector3, Group } from "three";
 	import Emitter from "./Particles/Emitter.svelte";
+	import { HTML } from "@threlte/extras";
 
     // variables
     let rigidBody;
@@ -131,11 +132,25 @@
             <T.Group position={[0, -0.75, 0]} bind:ref={character}>
                 <slot/>
             </T.Group>
-            <!-- {#if states.isWalking}
+            {#if states.isWalking}
                  <Emitter position={[position[0], position[1], position[2]]}/>
-            {/if} -->
+            {/if}
+            <!-- <Emitter position={[position[0], position[1] + 0.3, position[2]]}/> -->
+            <HTML center position.y={2}>
+                <div class="bar-wrapper-in-game"></div>
+            </HTML>
         </RigidBody>
 </T.Group>
 
 <!-- Input -->
 <svelte:window on:keydown={keyDown} on:keyup={keyUp}/>
+
+<style>
+    .bar-wrapper-in-game {
+		width: 33px;
+		height: 10px;
+		border: 1px solid black;
+        border-radius: 6px;
+		position: relative;
+	}
+</style>
