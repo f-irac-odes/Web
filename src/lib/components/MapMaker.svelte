@@ -3,7 +3,6 @@
 	import { AutoColliders, Collider } from '@threlte/rapier';
 	import { BoxGeometry, MeshStandardMaterial } from 'three';
 	import Door from './map/Door.svelte';
-	import { RoundedBoxGeometry } from '@threlte/extras';
 	import CrateStrong from './models/crateStrong.svelte';
 	import Plant from './models/plant.svelte';
 	import Spikes from './models/spikes.svelte';
@@ -84,6 +83,13 @@
                     targetRigidBody.setLinearDamping(25);
                 }}/>
                 <Spikes/>
+             </T.Group>
+             {:else if block === 7}
+             <T.Group position>
+                <Collider args={[1, 1, 1]} shape={'cuboid'}/>
+                <T.Mesh receiveShadow position={[x, 0, z]} material={new MeshStandardMaterial({color : "cyan", trasparent : true, opacity: 0.5})}>
+                    <T.BoxGeometry/>
+                </T.Mesh>
              </T.Group>
          {/if}
      {/each}

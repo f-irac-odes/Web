@@ -134,7 +134,7 @@
                 <slot/>
             </T.Group>
             {#if states.isWalking}
-                 <Emitter position={[position[0], position[1], position[2]]}/>
+                 <Emitter position={[position[0], position[1] - 0.3, position[2]]}/>
             {/if}
             <!-- <Emitter position={[position[0], position[1] + 0.3, position[2]]}/> -->
             <HTML center position.y={2}>
