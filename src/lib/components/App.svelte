@@ -8,12 +8,15 @@
   import CharacterController from './CharacterController.svelte';
 	import { Suspense, useProgress } from '@threlte/extras';
 
+
+
   const { progress } = useProgress()
 	const tweenedProgress = tweened($progress, {
 		duration: 800
 	})
 	$: tweenedProgress.set($progress)
 
+	
 </script>
 
 <!-- {#if $tweenedProgress < 1}

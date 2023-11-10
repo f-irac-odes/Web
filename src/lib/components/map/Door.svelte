@@ -2,6 +2,7 @@
     import { T } from "@threlte/core";
 	import { Collider } from "@threlte/rapier";
 	import { BoxGeometry, Mesh, MeshMatcapMaterial } from "three";
+	import CustomRenderer from "./renderer/CustomRenderer.svelte";
 
     export let position = [];
     export let rotation;
@@ -19,3 +20,5 @@
         <T.BoxGeometry args={[1, 0.8, 0.3]}/>
     </T.Mesh>
 </T.Group>
+
+<CustomRenderer selectedMesh={door}/>
