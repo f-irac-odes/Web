@@ -32,7 +32,7 @@
      {#each line as block, x}
          {#if block === 1}
             <AutoColliders>
-                <T.Mesh position={[x, 0, z]} material={new MeshStandardMaterial({color : "#f0f0f0"})}>
+                <T.Mesh castShadow position={[x, 0, z]} material={new MeshStandardMaterial({color : "orange"})}>
                     <RoundedBoxGeometry/>
                 </T.Mesh>
             </AutoColliders>
@@ -42,7 +42,10 @@
          {#if line[x - 1] === 1 }
                 <Door position={[x, 0, z]} {rotation}/>
             {:else if line[x - 1] !== 1}
-                <Door position={[x, 0, z]} rotation={[rotation[0], rotation[1] - 1.58, rotation[2]]}/>
+            <Door position={[x, 0, z]} rotation={[rotation[0], rotation[1] - 1.58, rotation[2]]}/>
+            {:else if line[x - 1] === 3 || line[x + 1] === 3}
+            <Door position={[x, 0, z]} rotation={[rotation[0], rotation[1] - 1.58, rotation[2]]}/>
+                
         {/if}
          {/if}
      {/each}

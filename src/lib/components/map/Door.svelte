@@ -16,6 +16,6 @@
     }}/>
     <T.Mesh bind:ref={door}>
         <T.MeshStandardMaterial color="brown" roughness={0.3}/>
-        <T.BoxGeometry args={[1, 1, 0.3]}/>
+        <T.BoxGeometry args={[1, 0.8, 0.3]}/>
     </T.Mesh>
 </T.Group>

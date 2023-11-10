@@ -7,7 +7,7 @@
     // variables
     let rigidBody;
     let character = new Group;
-    let position = [0, 0, 0];
+    let position = [0, 1, 0];
     let rotation = [0, 0, 0]
     let changeRotation;
     let camera;
@@ -93,19 +93,19 @@
             changeRotation = true;
         }
         if(keyboard.up){
-            impulse.z += 0.5
+            impulse.z += 1
             changeRotation = true;
         }
         if(keyboard.down){
-            impulse.z -= 0.5
+            impulse.z -= 1
             changeRotation = true;
         }
         if(keyboard.left){
-            impulse.x -= 0.5
+            impulse.x -= 1
             changeRotation = true;
         }
         if(keyboard.right){
-            impulse.x += 0.5
+            impulse.x += 1
             changeRotation = true;
         }
 
@@ -124,16 +124,16 @@
 <T.PerspectiveCamera makeDefault position={[x, 18, z]} fov={35} bind:ref={camera}/>
 
 <!-- Character -->
-<T.Group {position} {rotation} bind:ref={controller}> 
+<T.Group {position}  bind:ref={controller}> 
     <RigidBody bind:rigidBody enabledRotations={[false, false, false]} linearDamping={3}>
         <Collider args={[0.6, 0.4]} shape={'capsule'} on:collisionenter={({targetCollider}) => {
         }}/>
             <T.Group position={[0, -0.75, 0]} bind:ref={character}>
                 <slot/>
             </T.Group>
-            {#if states.isWalking}
+            <!-- {#if states.isWalking}
                  <Emitter position={[position[0], position[1], position[2]]}/>
-            {/if}
+            {/if} -->
         </RigidBody>
 </T.Group>
 
