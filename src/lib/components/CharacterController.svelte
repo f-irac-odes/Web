@@ -93,19 +93,19 @@
             changeRotation = true;
         }
         if(keyboard.up){
-            impulse.z += 1
+            impulse.z += 0.5
             changeRotation = true;
         }
         if(keyboard.down){
-            impulse.z -= 1
+            impulse.z -= 0.5
             changeRotation = true;
         }
         if(keyboard.left){
-            impulse.x -= 1
+            impulse.x -= 0.5
             changeRotation = true;
         }
         if(keyboard.right){
-            impulse.x += 1
+            impulse.x += 0.5
             changeRotation = true;
         }
 

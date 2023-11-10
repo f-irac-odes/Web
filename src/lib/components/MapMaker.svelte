@@ -38,7 +38,9 @@
                 </T.Mesh>
             </AutoColliders>
          {:else if  block === 2}
+         <T.Group position={[x, 0, z]}>
              <CrateStrong scale={1.5}/>
+         </T.Group>
          {:else if block === 3}
          {#if line[x - 1] === 1 }
                 <Door position={[x, 0, z]} {rotation}/>
