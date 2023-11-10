@@ -105,15 +105,16 @@
 
 <style>
     .bar-wrapper-in-game {
-		width: 33.333%;
-		height: 30px;
+		width: 33px;
+		height: 10px;
 		border: 1px solid black;
+        border-radius: 6px;
 		position: relative;
 	}
 	.bar {
 		height: 100%;
-    border-radius: 6px;
-    border-color: black;
+        border-radius: 6px;
+        border-color: black;
 		background-color: rgb(216, 107, 4);
 	}
 </style>
