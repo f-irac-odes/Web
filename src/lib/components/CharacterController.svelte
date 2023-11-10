@@ -156,4 +156,10 @@
         border-radius: 6px;
 		position: relative;
 	}
+    .bar {
+		height: 100%;
+    border-radius: 6px;
+    border-color: black;
+		background-color: rgb(216, 107, 4);
+	}
 </style>

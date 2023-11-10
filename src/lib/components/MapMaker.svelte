@@ -7,6 +7,9 @@
 	import Plant from './models/plant.svelte';
 	import Spikes from './models/spikes.svelte';
 	import BaerTrap from './models/BearTrap.svelte';
+	import { HTML } from '@threlte/extras';
+
+    let life = 100;
 
     let rotation = [0, 3.16, 0];
 
@@ -52,6 +55,11 @@
          {:else if  block === 2}
          <T.Group position={[x, 0, z]}>
             <Collider args={[0.5, 0.5, 0.5]} shape={'cuboid'}/>
+            <HTML center position.y={2}>
+                <div class="bar-wrapper-in-game">
+                    <div class="bar" style="width: {life}%" />
+                </div>
+            </HTML>
              <CrateStrong scale={1.5}/>
          </T.Group>
          {:else if block === 3}
@@ -94,3 +102,18 @@
          {/if}
      {/each}
 {/each}
+
+<style>
+    .bar-wrapper-in-game {
+		width: 33.333%;
+		height: 30px;
+		border: 1px solid black;
+		position: relative;
+	}
+	.bar {
+		height: 100%;
+    border-radius: 6px;
+    border-color: black;
+		background-color: rgb(216, 107, 4);
+	}
+</style>

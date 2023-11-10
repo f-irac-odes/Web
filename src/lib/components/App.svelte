@@ -16,7 +16,7 @@
 
 </script>
 
-{#if $tweenedProgress < 1}
+<!-- {#if $tweenedProgress < 1}
 	<div
 		transition:fade|local={{
 			duration: 200
@@ -28,7 +28,7 @@
 			<div class="bar" style="width: {$tweenedProgress * 100}%" />
 		</div>
 	</div>
-{/if}
+{/if} -->
 <Canvas colorManagementEnabled >
   <Suspense final>
     <World>
@@ -42,7 +42,7 @@
   </Suspense>
 </Canvas>
 
-<style>
+<!-- <style>
   .wrapper {
 		position: absolute;
 		width: 100%;
@@ -77,4 +77,4 @@
     border-color: black;
 		background-color: rgb(216, 107, 4);
 	}
-</style>
+</style> -->
