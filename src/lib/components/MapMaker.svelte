@@ -1,10 +1,12 @@
 <script>
     import {T} from '@threlte/core' 
-	import { AutoColliders } from '@threlte/rapier';
+	import { AutoColliders, Collider } from '@threlte/rapier';
 	import { BoxGeometry, MeshStandardMaterial } from 'three';
 	import Door from './map/Door.svelte';
 	import { RoundedBoxGeometry } from '@threlte/extras';
 	import CrateStrong from './models/crateStrong.svelte';
+	import Plant from './models/plant.svelte';
+	import BaerTrap from './models/BearTrap.svelte';
 
     let rotation = [0, 3.16, 0];
 
@@ -39,6 +41,7 @@
             </AutoColliders>
          {:else if  block === 2}
          <T.Group position={[x, 0, z]}>
+            <Collider args={[0.5, 0.5, 0.5]} shape={'cuboid'}/>
              <CrateStrong scale={1.5}/>
          </T.Group>
          {:else if block === 3}
@@ -51,7 +54,17 @@
                 
         {/if}
         {:else if block === 4}
-            <!-- else if content here -->
+            <T.Group position={[x, 0, z]}>
+                <Collider args={[1, 1, 1]} shape={'cuboid'} sensor on:sensorenter={({targetRigidBody}) => {
+                    targetRigidBody.setLinearDamping(25);
+                }}/>
+                <BaerTrap/>
+            </T.Group>
+        {:else if block === 5}
+            <T.Group position={[x, 0, z]}>
+                <Collider args={[1, 1, 1]} shape={'cuboid'} sensor/>
+                <Plant/>
+            </T.Group>
          {/if}
      {/each}
 {/each}

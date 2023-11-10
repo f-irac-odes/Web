@@ -30,7 +30,7 @@
 <Canvas colorManagementEnabled >
   <Suspense final>
     <World>
-    <!-- <Debug/> -->
+    <Debug/>
     <Scene />
   </World>
   </Suspense>
