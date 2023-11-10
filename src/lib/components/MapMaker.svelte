@@ -42,7 +42,7 @@
          {#if block === 1}
             <AutoColliders>
                 <T.Mesh castShadow position={[x, 0, z]} material={new MeshStandardMaterial({color : "orange"})}>
-                    <RoundedBoxGeometry/>
+                    <T.BoxGeometry/>
                 </T.Mesh>
             </AutoColliders>
          {:else if  block === 2}
@@ -63,13 +63,15 @@
             <T.Group position={[x, 0, z]}>
                 <Collider args={[1, 1, 1]} shape={'cuboid'} sensor on:sensorenter={({targetRigidBody}) => {
                     targetRigidBody.setLinearDamping(25);
+                }} on:sensorexit={({targetRigidBody}) => {
+                    targetRigidBody.setLinearDamping(3);
                 }}/>
                 <BaerTrap/>
             </T.Group>
         {:else if block === 5}
             <T.Group position={[x, 0, z]}>
                 <Collider args={[1, 1, 1]} shape={'cuboid'} sensor/>
-                <Plant/>
+                <Plant scale={1.3}/>
             </T.Group>
         {:else if block === 6}
              <T.Group>
