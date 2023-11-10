@@ -4,6 +4,7 @@
 	import { BoxGeometry, MeshStandardMaterial } from 'three';
 	import Door from './map/Door.svelte';
 	import { RoundedBoxGeometry } from '@threlte/extras';
+	import CrateStrong from './models/crateStrong.svelte';
 
     let rotation = [0, 3.16, 0];
 
@@ -37,7 +38,7 @@
                 </T.Mesh>
             </AutoColliders>
          {:else if  block === 2}
-             <!-- else if content here -->
+             <CrateStrong scale={1.5}/>
          {:else if block === 3}
          {#if line[x - 1] === 1 }
                 <Door position={[x, 0, z]} {rotation}/>
@@ -47,6 +48,8 @@
             <Door position={[x, 0, z]} rotation={[rotation[0], rotation[1] - 1.58, rotation[2]]}/>
                 
         {/if}
+        {:else if block === 4}
+            <!-- else if content here -->
          {/if}
      {/each}
 {/each}
