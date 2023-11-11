@@ -28,7 +28,7 @@
 <code>bash cd web && npm install</code>
 
 3. Start the development server:
-bash npm run dev
+<code>bash npm run dev</code>
 
 4. Open your browser and navigate to `http://localhost:5714` to play the game.
 
