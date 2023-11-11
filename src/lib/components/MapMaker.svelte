@@ -55,7 +55,7 @@
          {:else if  block === 2}
          <T.Group position={[x, 0, z]}>
             <Collider args={[0.5, 0.5, 0.5]} shape={'cuboid'}/>
-            <HTML center position={[x, 2, z]}>
+            <HTML position.y={1.5}>
                 <div class="bar-wrapper-in-game">
                     <div class="bar" style="width: {life}%" />
                 </div>

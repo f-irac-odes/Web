@@ -26,7 +26,7 @@ Command: npx @threlte/gltf@2.0.0 src/lib/components/models/plant.glb
 
         
 
-        const gltf = useGltf('/src/lib/components/models/plant.glb')
+        const gltf = useGltf('/static/models/plant.glb')
     
 
 			const component = forwardEventHandlers()

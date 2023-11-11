@@ -26,7 +26,7 @@ Command: npx @threlte/gltf@2.0.0 src/lib/components/models/spikes.glb
 
         
 
-        const gltf = useGltf('/src/lib/components/models/spikes.glb')
+        const gltf = useGltf('/static/models/spikes.glb')
     
 
 			const component = forwardEventHandlers()
