@@ -7,6 +7,7 @@
   import Character from './models/chracter.svelte'
   import CharacterController from './CharacterController.svelte';
 	import { Suspense, useProgress } from '@threlte/extras';
+3
 
 
 
