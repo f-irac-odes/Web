@@ -38,4 +38,4 @@ We don't welcome contributions from the community🐸! If you'd like to contribu
 
 ## License
 
-<link>Meta Wars</link> is licensed under the [MIT License](LICENSE)
+<link>Meta Wars</link> is licensed under the MIT License
