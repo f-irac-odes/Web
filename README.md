@@ -1,38 +1,41 @@
-# create-svelte
+# <link>Meta Wars</link>
 
-Everything you need to build a Svelte project, powered by [`create-svelte`](https://github.com/sveltejs/kit/tree/master/packages/create-svelte).
+<link>Meta Wars</link> is a character-based multiplayer game built with <link>Svelte</link> and <link>Ably</link>.
 
-## Creating a project
+## Description
 
-If you're seeing this, you've probably already done this step. Congrats!
+<link>Meta Wars</link> is an action-packed multiplayer game where players battle with unique characters in a virtual world. Join the epic battles, unlock powerful abilities, and strategize with your team to claim victory.
 
-```bash
-# create a new project in the current directory
-npm create svelte@latest
+## Features
 
-# create a new project in my-app
-npm create svelte@latest my-app
-```
+- Multiplayer gameplay: Engage in real-time battles with players from around the world.
+- Unique characters: Choose from a diverse roster of characters, each with their own abilities and playstyles.
+- Team-based gameplay: Coordinate with your teammates to outmaneuver and defeat the opposing team.
+- Upgrades and unlocks: Customize your character and unlock new abilities as you progress.
+- Leaderboards: Compete for the top rankings and show off your skills.
 
-## Developing
+## Technologies Used
 
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
+- <link>Svelte</link>: A modern JavaScript framework for building user interfaces.
+- <link>Ably</link>: A real-time messaging platform for multiplayer functionality.
 
-```bash
-npm run dev
+## Installation
 
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
-```
+1. Clone the repository:
+<code>bash git https://github.com/f-irac-odes/Web.git</code>
 
-## Building
+2. Install dependencies:
+<code>bash cd web && npm install</code>
 
-To create a production version of your app:
+3. Start the development server:
+bash npm run dev
 
-```bash
-npm run build
-```
+4. Open your browser and navigate to `http://localhost:5714` to play the game.
 
-You can preview the production build with `npm run preview`.
+## Contributing
 
-> To deploy your app, you may need to install an [adapter](https://kit.svelte.dev/docs/adapters) for your target environment.
+We don't welcome contributions from the community🐸! If you'd like to contribute to <link>Meta Wars</link>, please fork the repository and submit a pull request.
+
+## License
+
+<link>Meta Wars</link> is licensed under the [MIT License](LICENSE)
