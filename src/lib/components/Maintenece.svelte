@@ -1,6 +1,6 @@
 <script>
     import { T, useFrame } from '@threlte/core'
-    import { ContactShadows, Float, HTML, interactivity } from '@threlte/extras'
+    import { ContactShadows, Float, Grid, HTML, interactivity } from '@threlte/extras'
     import Key from './models/key.svelte'
     import { spring } from 'svelte/motion'
 	import { AmbientLight, DirectionalLight } from 'three';
@@ -35,14 +35,12 @@
     on:pointerleave={() => scale.set(7)}
   >
    <Key/>
-   <HTML fullscreen center position.y={3.5}>
-      <p class="title">Maintenence on.</p>
-   </HTML>
   </T.Group>
 </Float>
 <T.AmbientLight intensity={0.4}/>
 <T.DirectionalLight/>
 
+<Grid cellColor="white" sectionColor="white" cellThickness={0} sectionThickness={1} />
 <ContactShadows
   opacity={1}
   scale={10}
@@ -52,9 +50,3 @@
   color="#000000"
 />
 
-<style>
-  .title{
-    color : white;
-    font-size: 60px;
-  }
-</style>

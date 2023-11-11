@@ -2,6 +2,7 @@
   import App from '$lib/components/App.svelte'
   import { Canvas } from '@threlte/core';
 	import Maintenece from '../lib/components/Maintenece.svelte';
+	import { HTML } from '@threlte/extras';
 
   let maintenence = true
 </script>
@@ -15,6 +16,9 @@
   
 <div>
   <Canvas>
+    <HTML center position.y={3.5}>
+      <p class="title">Maintenence on.</p>
+    </HTML>
     <Maintenece />
   </Canvas>
 </div>
@@ -29,10 +33,12 @@
     width: 100vw;
     height: 100vh;
     background: rgb(13, 19, 32);
-    background: linear-gradient(180deg, rgba(13, 19, 32, 1) 0%, rgba(8, 12, 21, 1) 100%);
+    background: linear-gradient(180deg, rgba(13, 19, 32, 1) 0%, rgb(189, 31, 176) 100%);
   }
-  .ontop{
-    position: fixed;
-    bottom : 12px;
+  .title{
+    color : white;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 30px;
   }
 </style>
