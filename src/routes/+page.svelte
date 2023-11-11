@@ -33,7 +33,7 @@
     width: 100vw;
     height: 100vh;
     background: rgb(13, 19, 32);
-    background: linear-gradient(180deg, rgba(13, 19, 32, 1) 0%, rgb(189, 31, 176) 100%);
+    background: linear-gradient(180deg, rgb(24, 37, 65) 0%, rgb(152, 31, 189) 100%);
   }
   .title{
     color : white;
