@@ -35,6 +35,9 @@
     on:pointerleave={() => scale.set(7)}
   >
    <Key/>
+   <HTML fullscreen center position.y={3.5}>
+      <p class="title">Maintenence on.</p>
+   </HTML>
   </T.Group>
 </Float>
 <T.AmbientLight intensity={0.4}/>
@@ -49,6 +52,9 @@
   color="#000000"
 />
 
-<HTML fullscreen>
-    <p>Maintenence on.</p>
-</HTML>
+<style>
+  .title{
+    color : white;
+    font-size: 60px;
+  }
+</style>
