@@ -47,10 +47,10 @@
 		</div>
 	</div>
 {/if}
-<Canvas colorManagementEnabled useLegacyLights>
+<Canvas colorManagementEnabled >
   <Suspense final>
     <World>
-    <Debug/>
+    <!-- <Debug/> -->
     <Scene>
       <CharacterController >
         <Character scale={0.5}/>
