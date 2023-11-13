@@ -9,7 +9,7 @@
     let rigidBody;
     let life = 100
     let character = new Group;
-    let position = [0, 1, 0];
+    export let position = [0, 1, 0];
     let rotation = [0, 0, 0]
     let changeRotation;
     let camera;

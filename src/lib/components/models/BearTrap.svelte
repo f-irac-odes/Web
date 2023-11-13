@@ -10,7 +10,7 @@ Command: npx @threlte/gltf@2.0.0 src/lib/components/models/BearTrap.glb
 
   export const ref = new Group()
 
-  const gltf = useGltf('/static/models/BearTrap.glb')
+  const gltf = useGltf('/models/BearTrap.glb')
 
   const component = forwardEventHandlers()
 </script>

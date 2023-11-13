@@ -10,7 +10,7 @@ Command: npx @threlte/gltf@2.0.0 src/lib/components/models/chracter.glb
 
   export const ref = new Group()
 
-  const gltf = useGltf('/static/models/chracter.glb')
+  const gltf = useGltf('/models/chracter.glb')
 
   const component = forwardEventHandlers()
 </script>

@@ -7,7 +7,14 @@
   import Character from './models/chracter.svelte'
   import CharacterController from './CharacterController.svelte';
 	import { Suspense, useProgress } from '@threlte/extras';
-3
+	import { onMount } from 'svelte';
+	import Ably from 'ably'
+
+	async function initialize() {
+		var realtime = new Ably.Realtime({key : 'ygxxLQ.qKUV6Q:xhX-DtdDQXgV9QweAlfb7DaRmY65yFuPG6fmdJdWJKU'})
+		const channel = realtime.channels.get("game");
+		channel.publish('example', 'message data');
+	}
 
 
 
@@ -17,10 +24,10 @@
 	})
 	$: tweenedProgress.set($progress)
 
-	
+	onMount(() => initialize())
 </script>
 
-<!-- {#if $tweenedProgress < 1}
+{#if $tweenedProgress < 1}
 	<div
 		transition:fade|local={{
 			duration: 200
@@ -32,13 +39,13 @@
 			<div class="bar" style="width: {$tweenedProgress * 100}%" />
 		</div>
 	</div>
-{/if} -->
+{/if}
 <Canvas colorManagementEnabled >
   <Suspense final>
     <World>
     <Debug/>
     <Scene>
-      <CharacterController>
+      <CharacterController >
         <Character scale={0.5}/>
       </CharacterController>
     </Scene>
@@ -46,7 +53,7 @@
   </Suspense>
 </Canvas>
 
-<!-- <style>
+<style>
   .wrapper {
 		position: absolute;
 		width: 100%;
@@ -81,4 +88,4 @@
     border-color: black;
 		background-color: rgb(216, 107, 4);
 	}
-</style> -->
+</style>

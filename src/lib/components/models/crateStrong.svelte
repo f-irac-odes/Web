@@ -26,13 +26,13 @@ Command: npx @threlte/gltf@2.0.0 src/lib/components/models/crateStrong.glb
 
         
 
-        const gltf = useGltf('/static/models/crateStrong.glb')
+        const gltf = useGltf('/models/crateStrong.glb')
     
 
 			const component = forwardEventHandlers()
     </script>
 
-		<T is={ref} dispose={false} {...$$restProps} bind:this={$component}>
+		<T is={ref} castShadow dispose={false} {...$$restProps} bind:this={$component}>
 			{#await gltf}
 				<slot name="fallback" />
 			{:then gltf}

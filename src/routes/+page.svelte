@@ -4,7 +4,9 @@
 	import Maintenece from '../lib/components/Maintenece.svelte';
 	import { HTML } from '@threlte/extras';
 
-  let maintenence = true
+  let maintenence = false                                                                                           
+  
+  
 </script>
 
 {#if maintenence === false}  
