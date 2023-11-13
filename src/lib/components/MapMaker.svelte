@@ -7,9 +7,14 @@
 	import Plant from './models/plant.svelte';
 	import Spikes from './models/spikes.svelte';
 	import BaerTrap from './models/BearTrap.svelte';
-	import { HTML } from '@threlte/extras';
+	import { ContactShadows, HTML } from '@threlte/extras';
 
-    let life = 100;
+    let boxes = [];
+    let box = {
+        life : 100
+    }
+
+
 
     let rotation = [0, 3.16, 0];
 
@@ -41,9 +46,17 @@
         [0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 4, 4, 4, 4, 2, 2, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,],
         [0, 0, 0, 1, 0, 0, 0, 3, 0, 4, 4, 4, 4, 4, 2, 2, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,],
         [0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,],
-    ]
+    ] 
+     map.forEach((line) => 
+        line.forEach((x) => {
+            if (x === 4) {
+                boxes.push(box)
+            }
+        })
+    )
 </script>
 
+<T.Group>
 {#each map as line, z}
      {#each line as block, x}
          {#if block === 1}
@@ -53,11 +66,14 @@
                 </T.Mesh>
             </AutoColliders>
          {:else if  block === 2}
-         <T.Group position={[x, 0, z]}>
-            <Collider args={[0.5, 0.5, 0.5]} shape={'cuboid'}/>
+         <T.Group position={[x, 0, z]} bind:ref={box}>
+            <Collider args={[0.5, 0.5, 0.5]} shape={'cuboid'} on:contact={() => {
+                let box = boxes[x]
+                box.life -= 25
+            }}/>
             <HTML position.y={1.5}>
                 <div class="bar-wrapper-in-game">
-                    <div class="bar" style="width: {life}%" />
+                    <div class="bar" style="width: {box.life}%" />
                 </div>
             </HTML>
              <CrateStrong scale={1.5}/>
@@ -104,6 +120,7 @@
          {/if}
      {/each}
 {/each}
+</T.Group>
 
 <style>
     .bar-wrapper-in-game {

@@ -14,6 +14,11 @@
 		var realtime = new Ably.Realtime({key : 'ygxxLQ.qKUV6Q:xhX-DtdDQXgV9QweAlfb7DaRmY65yFuPG6fmdJdWJKU'})
 		const channel = realtime.channels.get("game");
 		channel.publish('example', 'message data');
+
+		channel.presence.subscribe('enter', function(member) {
+  			console.log(member.data); // => not moving
+		});
+
 	}
 
 
@@ -36,11 +41,13 @@
 	>
 		<p class="loading">Get ready</p>
 		<div class="bar-wrapper">
-			<div class="bar" style="width: {$tweenedProgress * 100}%" />
+			<div class="bar" style="width: {$tweenedProgress * 100}%">
+				<p>{Math.floor($tweenedProgress * 100)}%</p>
+			</div>
 		</div>
 	</div>
 {/if}
-<Canvas colorManagementEnabled >
+<Canvas colorManagementEnabled useLegacyLights>
   <Suspense final>
     <World>
     <Debug/>
