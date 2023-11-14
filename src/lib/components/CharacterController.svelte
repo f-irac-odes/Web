@@ -2,7 +2,6 @@
 	import { T, useFrame } from "@threlte/core";
 	import { Collider,  RigidBody } from "@threlte/rapier";
 	import { Vector3, Group } from "three";
-	import Emitter from "./Particles/Emitter.svelte";
 	import { HTML } from "@threlte/extras";
 
     // variables
@@ -10,10 +9,14 @@
     let life = 100
     let character = new Group;
     export let position = [0, 1, 0];
-    let rotation = [0, 0, 0]
     let changeRotation;
     let camera;
     let controller;
+
+    let character_info = {
+        name : "Bryan",
+        speed : 0.7,
+    }
 
     let states = {
         isWalking : false
@@ -95,19 +98,19 @@
             changeRotation = true;
         }
         if(keyboard.up){
-            impulse.z += 0.5
+            impulse.z += character_info.speed
             changeRotation = true;
         }
         if(keyboard.down){
-            impulse.z -= 0.5
+            impulse.z -= character_info.speed
             changeRotation = true;
         }
         if(keyboard.left){
-            impulse.x -= 0.5
+            impulse.x -= character_info.speed
             changeRotation = true;
         }
         if(keyboard.right){
-            impulse.x += 0.5
+            impulse.x += character_info.speed
             changeRotation = true;
         }
 
@@ -133,13 +136,12 @@
             <T.Group position={[0, -0.75, 0]} bind:ref={character}>
                 <slot/>
             </T.Group>
-            {#if states.isWalking}
-                 <Emitter position={[position[0], position[1] - 0.3, position[2]]}/>
-            {/if}
-            <!-- <Emitter position={[position[0], position[1] + 0.3, position[2]]}/> -->
             <HTML center position.y={2}>
+                <p>{character_info.name}</p>
                 <div class="bar-wrapper-in-game">
-                    <div class="bar" style="width: {life}%" />
+                    <div class="bar" style="width: {life}%">
+                        <p class="left-[50%]">{life}</p>
+                    </div>
                 </div>
             </HTML>
         </RigidBody>
@@ -150,16 +152,16 @@
 
 <style>
     .bar-wrapper-in-game {
-		width: 33px;
-		height: 10px;
+		width: 50px;
+		height: 15px;
 		border: 1px solid black;
-        border-radius: 6px;
+        border-radius: 3px;
 		position: relative;
 	}
     .bar {
 		height: 100%;
     border-radius: 6px;
     border-color: black;
-		background-color: rgb(216, 107, 4);
+		background-color: rgb(15, 216, 4);
 	}
 </style>

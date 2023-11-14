@@ -1,47 +1,17 @@
 <script>
-  import App from '$lib/components/App.svelte'
-  import { Canvas } from '@threlte/core';
-	import Maintenece from '../lib/components/Maintenece.svelte';
-	import { HTML } from '@threlte/extras';
+	import { Canvas } from "@threlte/core";
+	import Scene from "../lib/components/Scene.svelte";
+	import { Suspense } from "@threlte/extras";
+	import { Debug, World } from "@threlte/rapier";
 
-  let maintenence = false                                                                                           
-  
-  
 </script>
-
-{#if maintenence === false}  
-<div>
-  <App />
+<div class="w-[100vw] h-[100vh] fixed overflow-hidden">
+	<Canvas>
+		<Suspense final>
+			<World>
+				<Debug/>
+				<Scene/>
+			</World>
+		</Suspense>
+	</Canvas>
 </div>
-
-{:else}
-  
-<div>
-  <Canvas>
-    <HTML center position.y={3.5}>
-      <p class="title">Maintenence on.</p>
-    </HTML>
-    <Maintenece />
-  </Canvas>
-</div>
-{/if}
-
-<style>
-  :global(body) {
-    margin: 0;
-    overflow: hidden;
-  }
-
-  div {
-    width: 100vw;
-    height: 100vh;
-    background: rgb(13, 19, 32);
-    background: linear-gradient(180deg, rgb(24, 37, 65) 0%, rgb(152, 31, 189) 100%);
-  }
-  .title{
-    color : white;
-    font-weight: bold;
-    text-transform: uppercase;
-    font-size: 30px;
-  }
-</style>

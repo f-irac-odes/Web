@@ -1,4 +1,4 @@
-<script >
+<script>
     import { useThrelte, useRender } from '@threlte/core'
     import {
       EffectComposer,
@@ -20,9 +20,9 @@
   
       const outlineEffect = new OutlineEffect(scene, camera, {
         blendFunction: BlendFunction.ALPHA,
-        edgeStrength: 100,
+        edgeStrength: 4,
         pulseSpeed: 0.0,
-        visibleEdgeColor: 0xffffff,
+        visibleEdgeColor: 0x000000,
         hiddenEdgeColor: 0x9900ff,
         xRay: true,
         blur: true

@@ -1,20 +1,17 @@
 <script>
-    import {T} from '@threlte/core' 
+    import {T, useThrelte} from '@threlte/core' 
 	import { AutoColliders, Collider } from '@threlte/rapier';
-	import { BoxGeometry, MeshStandardMaterial } from 'three';
+	import {MeshStandardMaterial } from 'three';
 	import Door from './map/Door.svelte';
 	import CrateStrong from './models/crateStrong.svelte';
+    import CustomRenderer from './CustomRenderer.svelte'
 	import Plant from './models/plant.svelte';
 	import Spikes from './models/spikes.svelte';
 	import BaerTrap from './models/BearTrap.svelte';
-	import { ContactShadows, HTML } from '@threlte/extras';
+	import { HTML } from '@threlte/extras';
 
-    let boxes = [];
-    let box = {
-        life : 100
-    }
-
-
+    let life = 100;
+    let crate
 
     let rotation = [0, 3.16, 0];
 
@@ -46,17 +43,9 @@
         [0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 4, 4, 4, 4, 2, 2, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,],
         [0, 0, 0, 1, 0, 0, 0, 3, 0, 4, 4, 4, 4, 4, 2, 2, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,],
         [0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,],
-    ] 
-     map.forEach((line) => 
-        line.forEach((x) => {
-            if (x === 4) {
-                boxes.push(box)
-            }
-        })
-    )
+    ]
 </script>
 
-<T.Group>
 {#each map as line, z}
      {#each line as block, x}
          {#if block === 1}
@@ -66,18 +55,19 @@
                 </T.Mesh>
             </AutoColliders>
          {:else if  block === 2}
-         <T.Group position={[x, 0, z]} bind:ref={box}>
-            <Collider args={[0.5, 0.5, 0.5]} shape={'cuboid'} on:contact={() => {
-                let box = boxes[x]
-                box.life -= 25
-            }}/>
+         <T.Group position={[x, 0, z]} let:ref>
+            <Collider sensor args={[0.5, 0.5, 0.5]} shape={'cuboid'}  on:contact={() =>{
+
+            } 
+            }/>
             <HTML position.y={1.5}>
                 <div class="bar-wrapper-in-game">
-                    <div class="bar" style="width: {box.life}%" />
+                    <div class="bar" style="width: {life}%" />
                 </div>
             </HTML>
-             <CrateStrong scale={1.5}/>
+             <CrateStrong scale={1.5} bind:ref={crate}/>
          </T.Group>
+         <CustomRenderer/>
          {:else if block === 3}
          {#if line[x - 1] === 1 || line[x - 1] === 3}
                 <Door position={[x, 0, z]} {rotation}/>
@@ -120,7 +110,6 @@
          {/if}
      {/each}
 {/each}
-</T.Group>
 
 <style>
     .bar-wrapper-in-game {
