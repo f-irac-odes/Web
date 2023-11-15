@@ -1,22 +1,22 @@
 <script>
 	import { T, useFrame } from "@threlte/core";
-	import { Collider,  RigidBody } from "@threlte/rapier";
+	import { Collider,  RigidBody, useRapier, useRigidBody } from "@threlte/rapier";
 	import { Vector3, Group } from "three";
 	import { HTML } from "@threlte/extras";
+    import {user} from './user'
+    import {ColliderDesc} from '@dimforge/rapier3d-compat'
 
+    let colliderDesc = ColliderDesc.ball(0.5)
     // variables
     let rigidBody;
-    let life = 100
+    let life = user.gameStats.character_chose.hitPoints
     let character = new Group;
     export let position = [0, 1, 0];
     let changeRotation;
     let camera;
     let controller;
+    let {world, addRigidBodyToContext, removeRigidBodyFromContext, addColliderToContext, removeColliderFromContext} = useRapier()
 
-    let character_info = {
-        name : "Bryan",
-        speed : 0.7,
-    }
 
     let states = {
         isWalking : false
@@ -39,6 +39,7 @@
         right : false,
         up: false,
         down: false,
+        shoot : true
     }
 
     // functions
@@ -98,19 +99,19 @@
             changeRotation = true;
         }
         if(keyboard.up){
-            impulse.z += character_info.speed
+            impulse.z += user.gameStats.character_chose.speed
             changeRotation = true;
         }
         if(keyboard.down){
-            impulse.z -= character_info.speed
+            impulse.z -= user.gameStats.character_chose.speed
             changeRotation = true;
         }
         if(keyboard.left){
-            impulse.x -= character_info.speed
+            impulse.x -= user.gameStats.character_chose.speed
             changeRotation = true;
         }
         if(keyboard.right){
-            impulse.x += character_info.speed
+            impulse.x += user.gameStats.character_chose.speed
             changeRotation = true;
         }
 
@@ -120,8 +121,22 @@
             const angle = Math.atan2(impulse.x, impulse.z);
             character.rotation.y = angle;
         }
+        shoot()
         
     })
+    const shoot = () => {
+        let impulse = new Vector3(0, 0, 0);
+        const bullet = useRigidBody();
+        let collider = world.createCollider(colliderDesc, bullet)
+        if(shoot == true){
+            impulse.z += user.gameStats.character_chose.attack.range
+            if(bullet.getWorldPosition() > user.gameStats.character_chose.attack.range){
+                world.removeRigidBody(bullet, true)
+                world.removeCollider(collider, true)
+            }
+        }    
+        bullet.applyImpulse(impulse, true)
+    }
 
 </script>
 
@@ -137,9 +152,9 @@
                 <slot/>
             </T.Group>
             <HTML center position.y={2}>
-                <p>{character_info.name}</p>
+                <p>{user.name}</p>
                 <div class="bar-wrapper-in-game">
-                    <div class="bar" style="width: {life}%">
+                    <div class="bar" style="width: 100%">
                         <p class="left-[50%]">{life}</p>
                     </div>
                 </div>

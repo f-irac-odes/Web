@@ -1,6 +1,6 @@
 <script>
     import {T, useThrelte} from '@threlte/core' 
-	import { AutoColliders, Collider } from '@threlte/rapier';
+	import { AutoColliders, Collider, useRapier } from '@threlte/rapier';
 	import {MeshStandardMaterial } from 'three';
 	import Door from './map/Door.svelte';
 	import CrateStrong from './models/crateStrong.svelte';
@@ -9,10 +9,13 @@
 	import Spikes from './models/spikes.svelte';
 	import BaerTrap from './models/BearTrap.svelte';
 	import { HTML } from '@threlte/extras';
+	import { user } from './user';
 
-    let life = 100;
+    let life = 3000;
+    let value;
+    let collider;
     let crate
-
+    let {world, removeColliderFromContext} = useRapier()
     let rotation = [0, 3.16, 0];
 
     export let map = [
@@ -56,18 +59,22 @@
             </AutoColliders>
          {:else if  block === 2}
          <T.Group position={[x, 0, z]} let:ref>
-            <Collider sensor args={[0.5, 0.5, 0.5]} shape={'cuboid'}  on:contact={() =>{
-
+            <CrateStrong scale={1.5}/>
+            <Collider  args={[0.5, 0.5, 0.5]} bind:collider shape={'cuboid'}  on:contact={() =>{
+                if(life === 0){
+                    world.removeCollider(collider, true)
+                    ref.visible = false
+                }else{
+                    life -= user.gameStats.character_chose.attack.damage
+                }
             } 
             }/>
             <HTML position.y={1.5}>
                 <div class="bar-wrapper-in-game">
-                    <div class="bar" style="width: {life}%" />
+                    <div class="bar" style="width: {life * 100 / 100}%" />
                 </div>
             </HTML>
-             <CrateStrong scale={1.5} bind:ref={crate}/>
          </T.Group>
-         <CustomRenderer/>
          {:else if block === 3}
          {#if line[x - 1] === 1 || line[x - 1] === 3}
                 <Door position={[x, 0, z]} {rotation}/>
