@@ -6,7 +6,7 @@
 	import Entity from '../entity/Entity.svelte';
 
     let collider;
-    let maxlife = 3000;
+    let maxlife = 9000;
     let life = maxlife;
     let {world} = useRapier();
     let {scene} = useThrelte();
