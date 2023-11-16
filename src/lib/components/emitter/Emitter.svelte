@@ -5,6 +5,15 @@
 	import { Vector3 } from "three";
     export let position;
 
+    let m = { x: 0, y: 0 };
+
+  function handleMousemove(event) {
+    m.x = event.clientX;
+    m.y = event.clientY;
+
+    console.log(m.x, m.y)
+  }
+
     let bodies = []
     let lastBodyMounted = 0
     let bodyEveryMilliseconds = 100
@@ -54,15 +63,14 @@
             })
             bodies = bodies
           }
-          impulse.z += 1
-          rigidBody.applyImpulse(impulse, true)
+          impulse.z += 5
+          rigidBody.applyImpulse(impulse, false)
     }
     
 
 </script>
 
-<svelte:window on:click|preventDefault={shooting}/>
-
+<svelte:window on:click|preventDefault={shooting} on:mousemove={handleMousemove}/>
 
 {#each bodies as body (body.id)}
 	<Particle position={position} rotation={body.rotation} {rigidBody}/>

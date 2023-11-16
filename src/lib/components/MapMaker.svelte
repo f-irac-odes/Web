@@ -3,12 +3,10 @@
 	import { AutoColliders, Collider, useRapier } from '@threlte/rapier';
 	import {MeshStandardMaterial } from 'three';
 	import Door from './Map/Door.svelte';
-	import CrateStrong from './models/crateStrong.svelte';
 	import Plant from './models/plant.svelte';
 	import Spikes from './models/spikes.svelte';
 	import BaerTrap from './models/BearTrap.svelte';
-	import { user } from './user';
-	import Entity from './Entity/Entity.svelte';
+	import Crate from './Map/Crate.svelte';
 
     let life = 3000;
     let collider;
@@ -44,9 +42,10 @@
         [0, 0, 0, 1, 0, 0, 0, 3, 0, 4, 4, 4, 4, 4, 2, 2, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,],
         [0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,],
     ]
+
 </script>
 
-<T.Group position={[-50, 0, -50]}>
+<T.Group position={[-25, 0, -25]}>
 {#each map as line, z}
      {#each line as block, x}
          {#if block === 1}
@@ -56,18 +55,7 @@
                 </T.Mesh>
             </AutoColliders>
          {:else if  block === 2}
-         <T.Group position={[x, 0, z]}>
-            <CrateStrong scale={1.5}/>
-            <Collider  args={[0.5, 0.5, 0.5]} bind:collider shape={'cuboid'}  on:contact={() =>{
-                if(life === 0){
-                   line[x] = 0
-                }else{
-                    life -= user.gameStats.character_chose.attack.damage
-                }
-            } 
-            }/>
-            <Entity {life}/>
-         </T.Group>
+            <Crate position={[x, 0, z]}/>
          {:else if block === 3}
          {#if line[x - 1] === 1 || line[x - 1] === 3}
                 <Door position={[x, 0, z]} {rotation}/>
@@ -87,12 +75,14 @@
                 <BaerTrap/>
             </T.Group>
         {:else if block === 5}
-            <T.Group position={[x, 0, z]}>
-                <Collider args={[1, 1, 1]} shape={'cuboid'} sensor/>
+            <T.Group position={[x, 0, z]} let:ref>
+                <Collider args={[1, 1, 1]} shape={'cuboid'} sensor on:sensorenter={({}) => {
+                    ref.visible = true;
+                }}/>
                 <Plant scale={2} position.x={1}/>
                 <Plant scale={2} position.z={1}/>
                 <Plant scale={2} position.z={2}/>
-            </T.Group>
+                </T.Group>
         {:else if block === 6}
              <T.Group position>
                 <Collider args={[1, 1, 1]} shape={'cuboid'} sensor on:sensorenter={({targetRigidBody}) => {

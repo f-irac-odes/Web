@@ -1,6 +1,7 @@
 <script>
 	import { HTML } from "@threlte/extras";
 
+    export let maxlife = 3000;
     export let life;
     const getId = () => {
         return Math.random()
@@ -12,7 +13,7 @@
 <HTML center position.y={2}>
     <slot/>
     <div class="bar-wrapper-in-game">
-        <div class="bar" style="width: {life / 100}%">
+        <div class="bar" style="width: {maxlife * life / 100}%">
             <p class="left-[50%]">{life}</p>
         </div>
     </div>

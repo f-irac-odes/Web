@@ -3,7 +3,7 @@
 	import { Collider,  RigidBody, useRapier, useRigidBody } from "@threlte/rapier";
 	import { Vector3, Group } from "three";
     import {user} from './user'
-	import Entity from "./Entity/Entity.svelte";
+	import Entity from "../components/entity/Entity.svelte";
 
     // variables
     let rigidBody;
@@ -14,6 +14,7 @@
     let camera;
     let controller;
 	import Emitter from "./emitter/Emitter.svelte";
+	import { AudioListener } from "@threlte/extras";
 
 
     let states = {
@@ -125,20 +126,22 @@
 </script>
 
   <!-- Camera -->
-<T.PerspectiveCamera makeDefault position={[x, 18, z]} fov={35} bind:ref={camera}/>
+<T.PerspectiveCamera makeDefault position={[x, 18, z]} fov={35} bind:ref={camera}>
+    <AudioListener/>
+</T.PerspectiveCamera>
 
 <!-- Character -->
 <T.Group {position}  bind:ref={controller}> 
-    <RigidBody bind:rigidBody enabledRotations={[false, false, false]} linearDamping={3}>
+    <RigidBody bind:rigidBody enabledRotations={[false, false, false]} linearDamping={3} dominance={127}>
         <Collider args={[0.6, 0.4]} shape={'capsule'} on:collisionenter={({targetCollider}) => {
         }}/>
             <T.Group position={[0, -0.75, 0]} bind:ref={character}>
                 <slot/>
-                <Entity {life}/>
+                <Entity {life} maxlife={3000}/>
             </T.Group>
-            <Emitter {position}/>
-        </RigidBody>
+    </RigidBody>
 </T.Group>
+<Emitter {position}/>
 
 <!-- Input -->
 <svelte:window on:keydown={keyDown} on:keyup={keyUp}/>

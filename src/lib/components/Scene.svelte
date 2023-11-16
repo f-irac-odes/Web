@@ -1,12 +1,13 @@
 <script>
     import {T, useThrelte} from '@threlte/core'
-    import {Environment, HTML, OrbitControls} from '@threlte/extras'
+    import {Audio, Environment, HTML, OrbitControls, Sky} from '@threlte/extras'
     import * as THREE from 'three'
     import CustomRenderer from './CustomRenderer.svelte'
 	import CharacterController from './CharacterController.svelte';
 	import Ground from './Map/Ground.svelte';
     import Icon from '@iconify/svelte';
 	import MapMaker from './MapMaker.svelte';
+    import Chracter from './models/chracter.svelte'
 
     let {scene} = useThrelte()
 
@@ -22,8 +23,12 @@
 <T.AmbientLight color="white" intensity={0.6}/>
 <T.DirectionalLight intensity={0.8}/>
 
-<CharacterController/>
+<CharacterController>
+    <Chracter scale={0.5}/>
+</CharacterController>
 <MapMaker/>
 <Ground/>
 
-<Environment path="/env/" files="night.hdr"/>
+<Sky/>
+
+<Audio src={'/audio/music.mp3'} autoplay loop/>
