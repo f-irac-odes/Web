@@ -2,11 +2,9 @@
 	import { T, useFrame } from "@threlte/core";
 	import { Collider,  RigidBody, useRapier, useRigidBody } from "@threlte/rapier";
 	import { Vector3, Group } from "three";
-	import { HTML } from "@threlte/extras";
     import {user} from './user'
-    import {ColliderDesc} from '@dimforge/rapier3d-compat'
+	import Entity from "./Entity/Entity.svelte";
 
-    let colliderDesc = ColliderDesc.ball(0.5)
     // variables
     let rigidBody;
     let life = user.gameStats.character_chose.hitPoints
@@ -15,11 +13,12 @@
     let changeRotation;
     let camera;
     let controller;
-    let {world, addRigidBodyToContext, removeRigidBodyFromContext, addColliderToContext, removeColliderFromContext} = useRapier()
+	import Emitter from "./emitter/Emitter.svelte";
 
 
     let states = {
-        isWalking : false
+        isWalking : false,
+        isShooting : false
     }
     let x = 0 , z = 18;
 
@@ -39,7 +38,6 @@
         right : false,
         up: false,
         down: false,
-        shoot : true
     }
 
     // functions
@@ -121,22 +119,8 @@
             const angle = Math.atan2(impulse.x, impulse.z);
             character.rotation.y = angle;
         }
-        shoot()
-        
+
     })
-    const shoot = () => {
-        let impulse = new Vector3(0, 0, 0);
-        const bullet = useRigidBody();
-        let collider = world.createCollider(colliderDesc, bullet)
-        if(shoot == true){
-            impulse.z += user.gameStats.character_chose.attack.range
-            if(bullet.getWorldPosition() > user.gameStats.character_chose.attack.range){
-                world.removeRigidBody(bullet, true)
-                world.removeCollider(collider, true)
-            }
-        }    
-        bullet.applyImpulse(impulse, true)
-    }
 
 </script>
 
@@ -150,33 +134,11 @@
         }}/>
             <T.Group position={[0, -0.75, 0]} bind:ref={character}>
                 <slot/>
+                <Entity {life}/>
             </T.Group>
-            <HTML center position.y={2}>
-                <p>{user.name}</p>
-                <div class="bar-wrapper-in-game">
-                    <div class="bar" style="width: 100%">
-                        <p class="left-[50%]">{life}</p>
-                    </div>
-                </div>
-            </HTML>
+            <Emitter {position}/>
         </RigidBody>
 </T.Group>
 
 <!-- Input -->
 <svelte:window on:keydown={keyDown} on:keyup={keyUp}/>
-
-<style>
-    .bar-wrapper-in-game {
-		width: 50px;
-		height: 15px;
-		border: 1px solid black;
-        border-radius: 3px;
-		position: relative;
-	}
-    .bar {
-		height: 100%;
-    border-radius: 6px;
-    border-color: black;
-		background-color: rgb(15, 216, 4);
-	}
-</style>

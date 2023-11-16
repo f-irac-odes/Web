@@ -2,20 +2,17 @@
     import {T, useThrelte} from '@threlte/core' 
 	import { AutoColliders, Collider, useRapier } from '@threlte/rapier';
 	import {MeshStandardMaterial } from 'three';
-	import Door from './map/Door.svelte';
+	import Door from './Map/Door.svelte';
 	import CrateStrong from './models/crateStrong.svelte';
-    import CustomRenderer from './CustomRenderer.svelte'
 	import Plant from './models/plant.svelte';
 	import Spikes from './models/spikes.svelte';
 	import BaerTrap from './models/BearTrap.svelte';
-	import { HTML } from '@threlte/extras';
 	import { user } from './user';
+	import Entity from './Entity/Entity.svelte';
 
     let life = 3000;
-    let value;
     let collider;
-    let crate
-    let {world, removeColliderFromContext} = useRapier()
+    let {world} = useRapier()
     let rotation = [0, 3.16, 0];
 
     export let map = [
@@ -26,7 +23,7 @@
         [0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,],
         [0, 1, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 7, 7, 7, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,],
         [0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 2, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,],
-        [0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,],
+        [0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 1, 3, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,],
         [0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 5, 5, 5, 5, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,],
         [0, 1, 3, 1, 1, 1, 1, 3, 3, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,],
         [0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 2, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,],
@@ -49,6 +46,7 @@
     ]
 </script>
 
+<T.Group position={[-50, 0, -50]}>
 {#each map as line, z}
      {#each line as block, x}
          {#if block === 1}
@@ -58,22 +56,17 @@
                 </T.Mesh>
             </AutoColliders>
          {:else if  block === 2}
-         <T.Group position={[x, 0, z]} let:ref>
+         <T.Group position={[x, 0, z]}>
             <CrateStrong scale={1.5}/>
             <Collider  args={[0.5, 0.5, 0.5]} bind:collider shape={'cuboid'}  on:contact={() =>{
                 if(life === 0){
-                    world.removeCollider(collider, true)
-                    ref.visible = false
+                   line[x] = 0
                 }else{
                     life -= user.gameStats.character_chose.attack.damage
                 }
             } 
             }/>
-            <HTML position.y={1.5}>
-                <div class="bar-wrapper-in-game">
-                    <div class="bar" style="width: {life * 100 / 100}%" />
-                </div>
-            </HTML>
+            <Entity {life}/>
          </T.Group>
          {:else if block === 3}
          {#if line[x - 1] === 1 || line[x - 1] === 3}
@@ -117,19 +110,4 @@
          {/if}
      {/each}
 {/each}
-
-<style>
-    .bar-wrapper-in-game {
-		width: 33px;
-		height: 10px;
-		border: 1px solid black;
-        border-radius: 6px;
-		position: relative;
-	}
-	.bar {
-		height: 100%;
-        border-radius: 6px;
-        border-color: black;
-		background-color: rgb(216, 107, 4);
-	}
-</style>
+</T.Group>
