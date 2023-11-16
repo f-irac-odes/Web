@@ -86,9 +86,7 @@
                 <Collider args={[1, 1, 1]} shape={'cuboid'} sensor on:sensorenter={({}) => {
                     ref.visible = true;
                 }}/>
-                <Plant scale={2} position.x={1}/>
-                <Plant scale={2} position.z={1}/>
-                <Plant scale={2} position.z={2}/>
+                <Plant scale={2}/>
                 </T.Group>
         {:else if block === 6}
              <T.Group position>
