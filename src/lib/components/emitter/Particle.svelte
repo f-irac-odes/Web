@@ -19,7 +19,7 @@
   {position}
   {rotation}
 >
-  <RigidBody type={'dynamic'} bind:rigidBody>
+  <RigidBody type={'kinematicPosition'} bind:rigidBody>
     <Collider
       shape={'cuboid'}
       args={[0.125, 0.125, 0.125]}

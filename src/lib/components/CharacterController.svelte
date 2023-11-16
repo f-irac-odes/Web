@@ -137,7 +137,7 @@
         }}/>
             <T.Group position={[0, -0.75, 0]} bind:ref={character}>
                 <slot/>
-                <Entity {life} maxlife={3000}/>
+                <Entity {life} maxlife={user.gameStats.character_chose.hitPoints}/>
             </T.Group>
             <Emitter {position}/>
     </RigidBody>
