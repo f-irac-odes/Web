@@ -7,6 +7,8 @@
 	import Spikes from './models/spikes.svelte';
 	import BaerTrap from './models/BearTrap.svelte';
 	import Crate from './Map/Crate.svelte';
+    import Fence from './Map/fence.svelte'
+    import FenceCorner from './Map/fenceCorner.svelte'
 
     let life = 3000;
     let collider;
@@ -96,12 +98,24 @@
                 <Spikes/>
              </T.Group>
              {:else if block === 7}
-             <T.Group position>
+             <T.Group position={[x, 0, z]}>
                 <Collider args={[1, 1, 1]} shape={'cuboid'}/>
                 <T.Mesh receiveShadow position={[x, 0, z]} material={new MeshStandardMaterial({color : "cyan", transparent : true, opacity: 0.5})}>
                     <T.BoxGeometry/>
                 </T.Mesh>
              </T.Group>
+             {:else if block === 8}
+                <T.Group>
+                    {#if line[x - 1] === 1 || line[x - 1] === 8}
+                        <T.Group position={[x, 0, z]} {rotation}>
+                            <Fence/>
+                        </T.Group>
+                    {:else if line[x - 1] !== 1}
+                        <T.Group position={[x, 0, z]} rotation={[rotation[0], rotation[1] - 1.58, rotation[2]]}>
+                            <FenceCorner/>
+                        </T.Group>
+                    {/if}
+                </T.Group>
          {/if}
      {/each}
 {/each}

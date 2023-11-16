@@ -64,7 +64,7 @@
             bodies = bodies
           }
           impulse.z += 5
-          rigidBody.applyImpulse(impulse, false)
+          rigidBody.setNextKinematicTranslation(impulse)
     }
     
 
