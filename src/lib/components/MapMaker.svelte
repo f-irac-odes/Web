@@ -98,7 +98,7 @@
              {:else if block === 7}
              <T.Group position={[x, 0, z]}>
                 <Collider args={[1, 1, 1]} shape={'cuboid'}/>
-                <T.Mesh receiveShadow position={[x, 0, z]} material={new MeshStandardMaterial({color : "cyan", transparent : true, opacity: 0.5})}>
+                <T.Mesh receiveShadow material={new MeshStandardMaterial({color : "cyan", transparent : true, opacity: 0.5})}>
                     <T.BoxGeometry/>
                 </T.Mesh>
              </T.Group>
