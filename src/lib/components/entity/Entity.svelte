@@ -13,7 +13,7 @@
 <HTML center position.y={2}>
     <slot/>
     <div class="bar-wrapper-in-game">
-        <div class="bar" style="width: {maxlife * life / 100}%">
+        <div class="bar" style="width: {life * 100 / maxlife}%">
             <p class="left-[50%]">{life}</p>
         </div>
     </div>

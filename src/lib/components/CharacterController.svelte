@@ -139,9 +139,9 @@
                 <slot/>
                 <Entity {life} maxlife={3000}/>
             </T.Group>
+            <Emitter {position}/>
     </RigidBody>
 </T.Group>
-<Emitter {position}/>
 
 <!-- Input -->
 <svelte:window on:keydown={keyDown} on:keyup={keyUp}/>

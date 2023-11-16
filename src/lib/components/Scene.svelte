@@ -31,4 +31,4 @@
 
 <Sky/>
 
-<Audio src={'/audio/music.mp3'} autoplay loop/>
+<!-- <Audio src={'/audio/music.mp3'} autoplay loop/> -->

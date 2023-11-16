@@ -3,7 +3,7 @@
 	import { Collider, useRapier } from "@threlte/rapier";
 	import CrateStrong from '../models/crateStrong.svelte';
 	import { user } from '../user';
-	import Entity from './entity/Entity.svelte';
+	import Entity from '../entity/Entity.svelte';
 
     let collider;
     let maxlife = 3000;
