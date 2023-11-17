@@ -57,7 +57,7 @@
      {#each line as block, x}
          {#if block === 1}
             <AutoColliders>
-                <T.Mesh castShadow position={[x, 0, z]} material={new MeshStandardMaterial({color : "orange"})}>
+                <T.Mesh position={[x, 0, z]} material={new MeshStandardMaterial({color : "orange"})}>
                     <T.BoxGeometry/>
                 </T.Mesh>
             </AutoColliders>
@@ -99,7 +99,7 @@
              <T.Group position={[x, 0, z]}>
                 <Collider args={[0.5, 0.5, 0.5]} shape={'cuboid'}/>
                 <T.Mesh receiveShadow material={new MeshStandardMaterial({color : "cyan", transparent : true, opacity: 0.5})}>
-                    <T.BoxGeometry/>
+                    <T.BoxGeometry args={[1, 0.3, 1]}/>
                 </T.Mesh>
              </T.Group>
              {:else if block === 8}
