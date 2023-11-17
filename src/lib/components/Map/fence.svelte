@@ -26,7 +26,7 @@ Command: npx @threlte/gltf@2.0.0 static/models/fence.glb
 
         
 
-        const gltf = useGltf('/static/models/fence.glb')
+        const gltf = useGltf('/models/fence.glb')
     
 
 			const component = forwardEventHandlers()

@@ -29,7 +29,6 @@
 	<Canvas>
 		<Suspense final>
 			<World>
-				<Debug/>
 				<Scene/>
 			</World>
 		</Suspense>
